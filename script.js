@@ -6,7 +6,7 @@ document.getElementById('emocion-form').addEventListener('submit', async functio
   const formData = new FormData();
   formData.append('frase', frase);
 
-  const response = await fetch('https://detector-emociones-production.up.railway.app/', {
+  const response = await fetch('https://detector-emociones-production.up.railway.app/api/detectar', {
     method: 'POST',
     body: formData,
   });

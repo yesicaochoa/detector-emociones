@@ -6,11 +6,11 @@ app = Flask(__name__)
 
 vectorizer, modelo = joblib.load('modelo.joblib')
 
-@app.route('/', methods=['GET'])
-def index():
-    return render_template('index.html')
+@app.route('/')
+def home():
+    return "API para detección de emociones."
 
-@app.route('/', methods=['POST'])
+@app.route('/api/detectar', methods=['POST'])
 def detectar():
     frase = request.form['frase']
     X = vectorizer.transform([frase])
