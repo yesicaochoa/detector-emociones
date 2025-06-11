@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Detector de Emociones</title>
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>¿Cómo te sentís hoy?</h1>
-  <form id="emocion-form">
-    <input type="text" id="frase" name="frase" placeholder="Escribí una frase..." required>
-    <button type="submit">Detectar emoción</button>
+  <h1>Detector de Emociones</h1>
+  <form method="POST">
+    <input type="text" name="frase" placeholder="Escribí una frase">
+    <button type="submit">Detectar Emoción</button>
   </form>
-  <h2 id="resultado"></h2>
 
-  <script src="script.js"></script>
+  {% if emocion %}
+    <p id="emocion">{{ emocion }}</p>
+  {% endif %}
 </body>
 </html>
