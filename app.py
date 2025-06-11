@@ -1,0 +1,18 @@
+from flask import Flask, request, render_template
+import joblib
+
+app = Flask(__name__)
+
+vectorizer, modelo = joblib.load('modelo.joblib')
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    emocion = ''
+    if request.method == 'POST':
+        frase = request.form['frase']
+        X = vectorizer.transform([frase])
+        emocion = modelo.predict(X)[0]
+    return render_template('index.html', emocion=emocion)
+
+if __name__ == '__main__':
+    app.run(debug=True)
