@@ -1,25 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <title>Detector de emociones</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}" />
+  <meta charset="UTF-8">
+  <title>Detector de Emociones</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>¿Cómo te sentís hoy?</h1>
-    <form method="POST">
-        <select name="frase" required>
-            <option value="">-- Elegí una frase --</option>
-            <option value="Estoy muy triste y no sé qué hacer">Estoy muy triste y no sé qué hacer</option>
-            <option value="Me siento feliz y con mucha energía">Me siento feliz y con mucha energía</option>
-            <option value="Estoy enojado con todo el mundo">Estoy enojado con todo el mundo</option>
-            <option value="Estoy preocupado por el futuro">Estoy preocupado por el futuro</option>
-        </select>
-        <button type="submit">Detectar emoción</button>
-    </form>
+  <h1>¿Cómo te sentís hoy?</h1>
+  <form id="emocion-form">
+    <input type="text" id="frase" name="frase" placeholder="Escribí una frase..." required>
+    <button type="submit">Detectar emoción</button>
+  </form>
+  <h2 id="resultado"></h2>
 
-    {% if emocion %}
-        <h2>La emoción detectada es: {{ emocion }}</h2>
-    {% endif %}
+  <script src="script.js"></script>
 </body>
 </html>
