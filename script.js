@@ -11,10 +11,6 @@ document.getElementById('emocion-form').addEventListener('submit', async functio
     body: formData,
   });
 
-  const html = await response.text();
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, 'text/html');
-
-  const emocion = doc.querySelector('h2').innerText;
-  document.getElementById('resultado').innerText = emocion;
+  const data = await response.json();
+  document.getElementById('resultado').innerText = 'Emoción detectada: ' + data.emocion;
 });
