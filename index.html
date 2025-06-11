@@ -1,18 +1,35 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Detector de Emociones</title>
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>¿Cómo te sentís hoy?</h1>
-  <form id="emocion-form">
-    <input type="text" id="frase" name="frase" placeholder="Escribí una frase..." required>
-    <button type="submit">Detectar emoción</button>
+  <h1>Detector de Emociones</h1>
+  <form id="formulario">
+    <input type="text" name="frase" id="frase" placeholder="Escribí una frase">
+    <button type="submit">Detectar Emoción</button>
   </form>
-  <h2 id="resultado"></h2>
+  <p id="resultado"></p>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById('formulario').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const frase = document.getElementById('frase').value;
+
+      const respuesta = await fetch('https://detector-emociones-production.up.railway.app/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({ frase })
+      });
+
+      const html = await respuesta.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+      const emocion = doc.querySelector('#emocion');
+      document.getElementById('resultado').innerText = emocion ? emocion.innerText : 'No se pudo detectar.';
+    });
+  </script>
 </body>
 </html>
