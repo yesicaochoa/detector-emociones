@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+  max-width: 500px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+input, button {
+  padding: 10px;
+  margin: 10px;
+  font-size: 16px;
+}
+
+h2 {
+  margin-top: 30px;
+  color: #444;
+}
